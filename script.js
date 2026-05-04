@@ -15,31 +15,20 @@ function Book(title, author, pages, read) {
   this.read = Boolean(read);
 }
 
-/** Toggle read status */
 Book.prototype.toggleRead = function () {
   this.read = !this.read;
 };
 
-/* Create a Book and push it into myLibrary */
 function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
   return book;
 }
 
-/* Remove a book from myLibrary by id */
 function removeBookById(id) {
   const index = myLibrary.findIndex((b) => b.id === id);
   if (index !== -1) myLibrary.splice(index, 1);
 }
-
-// ── Seed data ─────────────────────────────────────────────────────────
-
-addBookToLibrary("The Name of the Wind", "Patrick Rothfuss", 662, true);
-addBookToLibrary("Dune", "Frank Herbert", 688, false);
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
-
-// ── DOM Helpers ───────────────────────────────────────────────────────
 
 const libraryGrid = document.getElementById("library-grid");
 const emptyState = document.getElementById("empty-state");
@@ -50,6 +39,7 @@ const bookCount = document.getElementById("book-count");
  * @param {Book} book
  * @returns {HTMLElement}
  */
+
 function createBookCard(book) {
   const card = document.createElement("article");
   card.classList.add("book-card");
@@ -82,12 +72,12 @@ function displayLibrary() {
 
   if (myLibrary.length === 0) {
     emptyState.style.display = "flex";
-    bookCount.textContent = "0 volumes";
+    bookCount.textContent = "0 books";
     return;
   }
 
   emptyState.style.display = "none";
-  bookCount.textContent = `${myLibrary.length} volume${myLibrary.length !== 1 ? "s" : ""}`;
+  bookCount.textContent = `${myLibrary.length} book${myLibrary.length !== 1 ? "s" : ""}`;
 
   myLibrary.forEach((book) => {
     libraryGrid.appendChild(createBookCard(book));
