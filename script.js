@@ -66,7 +66,6 @@ function createBookCard(book) {
   return card;
 }
 
-/** Render/refresh the full library display */
 function displayLibrary() {
   libraryGrid.innerHTML = "";
 
@@ -84,7 +83,6 @@ function displayLibrary() {
   });
 }
 
-/** Simple HTML escape to prevent XSS */
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -92,8 +90,6 @@ function escapeHtml(str) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
-
-// ── Event Delegation: card buttons ───────────────────────────────────
 
 libraryGrid.addEventListener("click", (e) => {
   const id = e.target.dataset.id;
@@ -112,8 +108,6 @@ libraryGrid.addEventListener("click", (e) => {
     displayLibrary();
   }
 });
-
-// ── Dialog / Form ─────────────────────────────────────────────────────
 
 const dialog = document.getElementById("book-dialog");
 const form = document.getElementById("book-form");
@@ -135,12 +129,9 @@ newBookBtn.addEventListener("click", openDialog);
 cancelBtn.addEventListener("click", closeDialog);
 closeBtn.addEventListener("click", closeDialog);
 
-// Close on backdrop click
 dialog.addEventListener("click", (e) => {
   if (e.target === dialog) closeDialog();
 });
-
-// ── Form Submission ───────────────────────────────────────────────────
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
